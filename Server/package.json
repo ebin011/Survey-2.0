@@ -1,0 +1,34 @@
+{
+  "name": "server",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "react-scripts": "0.9.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.2",
+    "express-mailer": "^0.3.1",
+    "mongoose": "^4.8.6",
+    "nodemailer": "^3.1.7",
+    "nodemailer-smtp-transport": "^2.7.2",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "sendgrid": "^4.8.4",
+    "socket.io": "^1.7.3",
+    "superagent": "^3.5.0",
+    "superagent-auth-bearer": "0.0.1",
+    "xoauth2": "^1.2.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "index.js",
+  "author": "Ebin Antony",
+  "license": "ISC"
+}

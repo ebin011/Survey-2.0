@@ -1,0 +1,8 @@
+type,data,options,maxValue,scale
+Welcome,Cutting Edge,,,
+Description,Architect Academy,,,
+SingleText,Name of the Client,,,
+SingleText,Name of the Project/Proposal,,,
+Checkbox,You underwent Cutting Edge training in August 2016 or before. Post training we are confident that you got an opportunity to do One or More of following.Please select appropriate box(es):,Contributed to New Proposals/Got a New Project/Added Value to Existing Project/Still looking for avenues to contribute/Added other values that are not listed above,,
+Comments,Share your value-adds post training,,,
+Comments,Share more details on your selection,,,

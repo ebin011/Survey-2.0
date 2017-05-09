@@ -1,0 +1,14 @@
+type,data,options,maxValue,scale
+Welcome,Java Training,,,
+Description,Feb 8 Java trining feed back,,,
+ThanksMessage,Thanks For attend Training,,,
+Name,JECH,,,
+Contact,9988776655,,,
+Email,jech@testing.com,,,
+StarRatings,Rate the,Excellent/Very Good/Good/Average/Bad,,5
+Comments,Comments Questions?,,,
+MultiChoice,Mutichoice questions?,Option A/Option B/Option C/Option D/Option E,,
+Slider,Slide for values,,100,2
+Dropdown,It is drop down?,1/2/3/4/5,,
+SingleText,This is single text?,,,
+YesOrNo,Yes/No question,Yes/No,,

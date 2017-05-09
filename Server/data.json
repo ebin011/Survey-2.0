@@ -1,0 +1,2 @@
+{"_id":{"$oid":"58f70991db738937125cc3ca"},"status":"draft","surveyname":"create","questions":[],"__v":0}
+{"_id":{"$oid":"58fda3f6d261035b2f2d77cc"},"status":"draft","surveyname":"next","questions":[{"questionType":"StarRatings","questionQ":"star Rate","scale":5,"options":[1,2,3,4,5]},{"questionType":"Comments","questionQ":"Comments ","options":[]}],"__v":0}
