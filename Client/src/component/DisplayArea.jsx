@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
@@ -28,7 +29,7 @@ class DisplayArea extends Component {
    this.state = {
 
       questionArray:[]
-        
+
    }
  }
  questionsFunction(fullArray)
@@ -44,18 +45,18 @@ class DisplayArea extends Component {
   }
 
   handleChildClick(event) {
-    
+
      alert("The Child button text is: ");
-     
-     
+
+
   }
 
  componentWillMount(){
-    
- }
- 
 
- 
+ }
+
+
+
 
  render()
  {
@@ -64,7 +65,7 @@ class DisplayArea extends Component {
 
  <NewTemplate tempArr={this.questionsFunction.bind(this)}  />
 
- 
+
       finalTemplete.push(this.state.questionArray.map((fullQuestions,i)=>{
         console.log("Full Data");
         console.log(fullQuestions)
@@ -74,17 +75,17 @@ class DisplayArea extends Component {
                <CardText>
                   <h3 style={{marginTop:'3%',marginLeft:'3%',marginBottom:'3%',color:'#000000',textAlign:'left'}}>{i+1}:{fullQuestions.questionQ}</h3>
                   {fullQuestions.questiontype}
-                  
+
                </CardText>
-           
+
          </Card>)
             }));
 
    return(<div>
-     
-      
+
+
                 {finalTemplete}
-                
+
    </div>);
  }
 }

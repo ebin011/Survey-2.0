@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import SurveyBar from './component/SurveyBar';
 import { Grid,Col,Row} from 'react-flexbox-grid';

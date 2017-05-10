@@ -35,7 +35,7 @@ class CreateSurvey extends Component {
   }}
   componentWillMount(){
     request
-    .get('http://10.201.174.176:9080/api/getDetails/')
+    .get('http://10.42.0.130:9080/api/getDetails/')
     .end((err,res) => {
 
       this.setState({
@@ -52,7 +52,7 @@ class CreateSurvey extends Component {
       surveyname:this.state.name,
       status:'draft'
     }
-    request.post('http://10.201.174.176:9080/api/createSurvey')
+    request.post('http://10.42.0.130:9080/api/createSurvey')
             .set('Content-Type', 'application/json')
             .send(nameData)
              .end((err,res)=>
@@ -82,7 +82,7 @@ class CreateSurvey extends Component {
     var drafts=0;
     var running=0;
     var closed=0;
-    var url='Home/AddQuestion/'+this.state.name
+    var url='newTemplate/'+this.state.name
 this.state.output.map((obj,i)=>{
   if(obj.status=="draft"){
     drafts++;

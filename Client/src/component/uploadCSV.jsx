@@ -112,7 +112,7 @@ covertForInsert(data) {
 	console.log("array  "+JSON.stringify(tempObj));
 	this.setState({open:true});
 	  var sName=localStorage.getItem('sName');
-	request.put('http://10.201.174.176:9080/api/uploadSurvey/'+sName)
+	request.put('http://10.42.0.130:9080/api/uploadSurvey/'+sName)
 
 					.set('Content-Type', 'application/json')
 					.send(tempObj)
