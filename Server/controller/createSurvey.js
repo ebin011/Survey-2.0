@@ -6,7 +6,12 @@ module.exports=function (req, res) {
 			surveyConfig.status=req.body.status;
   			surveyConfig.save(function (err) {
      			if(!err){
+     				console.log("ok");
      				res.send("created")
+     			}
+     			else
+     			{
+     				console.log(err);
      			}
   			});
 

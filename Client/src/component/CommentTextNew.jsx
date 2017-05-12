@@ -39,15 +39,7 @@ questionChange(e){
   var components=[];
   
   components.push(<div>
-                      <TextField
-                          hintText="Your Question"
-                          hintStyle={{fontWeight:'bold'}}
-                          value={this.state.quest}
-                          multiLine={true}
-                          underlineStyle={{borderColor:'#37861E '}}
-                          style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
-                          onChange={this.questionChange.bind(this)}
-                      />
+                      
                      <Textarea
                            useCacheForDOMMeasurements
                            placeholder="Your Comments Here in less than 500 words"

@@ -5,7 +5,8 @@ const uploadSurveyConfig=require('../controller/uploadSurvey');
 const getSurveyConfig=require('../controller/getSurveyConfig');
 const publishSurvey=require('../controller/runningTime');
 const deleteQuest=require('../controller/deleteSurveyQuest');
-const tempQuestions = require('../controller/tempQuestionsController')
+const tempQuestions = require('../controller/tempQuestionsController');
+const getTempQuestions = require('../controller/getTempQuestions');
 const express = require('express');
 const router = express.Router();
 
@@ -16,5 +17,6 @@ router.put('/api/updateDate/:sName',publishSurvey);
 router.post('/api/updateSurvey/:sName',updateSurveyConfig);
 router.get('/api/getSurvey/:sName',getSurveyConfig);
 router.get('/api/getDetails',getSurveyDetails);
-router.post('/api/addTempQuestions/:sName',tempQuestions)
+router.post('/api/addTempQuestions/:sName',tempQuestions);
+router.get('/api/getTempQuestions',getTempQuestions);
 module.exports=router;

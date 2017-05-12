@@ -8,12 +8,16 @@ import Divider from 'material-ui/Divider';
 import { Grid,Col,Row} from 'react-flexbox-grid';
 import Subheader from 'material-ui/Subheader';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import request from 'superagent';
 
 import AddOptions from '../component/AddOptions';
+
+import DisplayArea from '../component/DisplayArea';
  
 const floatStyle={
  margin:10
 }
+var i=0;
 class MultiChoiceNew extends Component {
 
    constructor() {
@@ -22,13 +26,37 @@ class MultiChoiceNew extends Component {
       quest:'',
       disable:true,
      optionArr: [' '],
+     tempArr:[],
+     tempIndex:0
         
    }
  }
 
  componentWillMount(){
+
+    request.get('http://localhost:9080/api/getTempQuestions')
+
+    .end((err,res) => {
+      // if(res.body[i].questions[i].questionType=="MultiChoice"){
+       
+      res.body.map((obj,i)=>{
+        if(obj.questions[i].questionType=="MultiChoice")
+        {
+        this.setState({
+         optionArr:res.body[i].questions[i].options,
+              });
+        }
+      });
+      
+      if(err){console.log(err)}
+        
+    });
+   
+
     this.props.type("MultiChoice");
  }
+
+ 
  
 questionChange(e){
   this.setState({
@@ -64,28 +92,24 @@ questionChange(e){
 
       
   }
+  
+  onOptionChange(){
+    console.log("get it");
+  }
+
  render()
  {
   var components=[];
   var selOpt=[];
+  var updateOptions=[];
+  
 
   const options=this.state.optionArr.map((value,index) => {
+
          return (
          <AddOptions addoptions={this.addOptions.bind(this)} index={index} value={value} removeoptions={this.removeOptions.bind(this)} changeoptions={this.changeOptions.bind(this)}/>
          );
        });
-
-  components.push(<div>
-                      <TextField
-                              hintText="Your Question"
-                              hintStyle={{fontWeight:'bold'}}
-                              value={this.state.quest}
-                              multiLine={true}
-                              underlineStyle={{borderColor:'#37861E '}}
-                              style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
-                              onChange={this.questionChange.bind(this)}
-                      />
-                  </div>);
 
   this.state.optionArr.map((option)=>{
       selOpt.push(<RadioButton
@@ -100,8 +124,7 @@ questionChange(e){
    </RadioButtonGroup>
  </div>);
    return(<div>
-     
-      
+                {updateOptions}
                 {components}
                 {options}
    </div>);

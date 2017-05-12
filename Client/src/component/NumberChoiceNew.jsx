@@ -75,15 +75,7 @@ questionChange(e){
   
 
   components.push(<div>
-            <TextField
-                  hintText="Your Question"
-                  hintStyle={{fontWeight:'bold'}}
-                  value={this.state.quest}
-                  multiLine={true}
-                  underlineStyle={{borderColor:'#37861E '}}
-                  style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
-                  onChange={this.questionChange.bind(this)}
-                 />
+            
             <SelectField
                   floatingLabelText="Select Scale"
                   hintText="Number of stars"
@@ -105,7 +97,7 @@ questionChange(e){
       iconStyle={{marginLeft:'10%',marginRight:'2%'}}
     />);
     }
-  components.push(<div><RadioButtonGroup name="MultiChoice" style={{textAlign:'left',marginTop:'2%',marginLeft:'10%',display:"flex",width:'100%'}} >
+  components.push(<div><RadioButtonGroup name="NumberChoice" style={{textAlign:'left',marginTop:'2%',marginLeft:'10%',display:"flex",width:'100%'}} >
    {selOpt}
    </RadioButtonGroup>
  </div>);

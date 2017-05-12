@@ -53,7 +53,8 @@ var questions=[];
 var options=[];
 var selOpt=[];
 var optionTempArray=[];
-var sName="tempData";
+var sName="surveytempquestions";
+var tempObj={}
 
 
 const welcomeStyle={
@@ -158,14 +159,14 @@ createrMailChange(e){
    this.setState({createrMail:e.target.value});
 }
 
-questionChange(e){
-  // var temp=this.state.fullTemplate;
-  // questionsArray[i]={"question":e.target.value,"type":typeValue}
-  this.setState({questionChange:e.target.value})
-   var components=[];
+// questionChange(e){
+//   // var temp=this.state.fullTemplate;
+//   // questionsArray[i]={"question":e.target.value,"type":typeValue}
+//   this.setState({questionChange:e.target.value})
+//    var components=[];
 
 
-}
+// }
 
 
 onChangeQuestType(quest){
@@ -268,6 +269,7 @@ addNewQuestion(question,type,options,scale,maxValue){
 
     this.setState({fullTemplate:arr});
     var result={questions:arr[0]};
+    tempObj["questions"]=questions;
     console.log(result)
      index=index+1;
      console.log(arr);
@@ -299,6 +301,12 @@ onChangeOptions(options)
   {
     this.setState({ optionsArr:options })
   }
+questionChange(e){
+  this.setState({
+     questionQ:e.target.value,
+   })
+   
+}
 
  getType(type)
   {
@@ -389,6 +397,7 @@ render() {
       {
         console.log("state", this.state.output.welcomeMsg);
         welcomeTitle.pop();
+        questions.pop();
         welcomeTitle.push(<div>
         <TextField 
          id="text-field-welcome"
@@ -411,6 +420,7 @@ render() {
       {
         console.log("state", this.state.output.welcomeMsg);
         thanksMessage.pop();
+        questions.pop();
         thanksMessage.push(<div>
           <TextField 
          id="text-field-thanks"
@@ -461,7 +471,16 @@ if(this.state.questType==1){
             <Divider />
               
              <CardText>
-               <SingleText type={this.getType.bind(this)} question={this.onChangeQuest.bind(this)}/>
+             <TextField
+                hintText="Your Question"
+                hintStyle={{fontWeight:'bold'}}
+                value={this.state.questionQ}
+                multiLine={true}
+                underlineStyle={{borderColor:'#37861E '}}
+                style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
+                onChange={this.questionChange.bind(this)}
+              />
+               <SingleText type={this.getType.bind(this)} />
             </CardText>
 
            <Col offset={3}>
@@ -489,7 +508,16 @@ else if(this.state.questType==2){
             <Divider />
               
              <CardText>
-               <CommentText type={this.getType.bind(this)} question={this.onChangeQuest.bind(this)}/>
+             <TextField
+                hintText="Your Question"
+                hintStyle={{fontWeight:'bold'}}
+                value={this.state.questionQ}
+                multiLine={true}
+                underlineStyle={{borderColor:'#37861E '}}
+                style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
+                onChange={this.questionChange.bind(this)}
+              />
+               <CommentText type={this.getType.bind(this)} />
             </CardText>
 
            <Col offset={3}>
@@ -516,7 +544,16 @@ else if(this.state.questType==3){
             <Divider />
               
              <CardText>
-               <MultiChoice type={this.getType.bind(this)} question={this.onChangeQuest.bind(this)}  options={this.onChangeOptions.bind(this)}/>
+              <TextField
+                hintText="Your Question"
+                hintStyle={{fontWeight:'bold'}}
+                value={this.state.questionQ}
+                multiLine={true}
+                underlineStyle={{borderColor:'#37861E '}}
+                style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
+                onChange={this.questionChange.bind(this)}
+              />
+               <MultiChoice type={this.getType.bind(this)}  options={this.onChangeOptions.bind(this)}/>
             </CardText>
 
            <Col offset={3}>
@@ -543,7 +580,16 @@ else if(this.state.questType==4){
             <Divider />
               
              <CardText>
-               <CheckBox type={this.getType.bind(this)} question={this.onChangeQuest.bind(this)}  options={this.onChangeOptions.bind(this)}/>
+             <TextField
+                hintText="Your Question"
+                hintStyle={{fontWeight:'bold'}}
+                value={this.state.questionQ}
+                multiLine={true}
+                underlineStyle={{borderColor:'#37861E '}}
+                style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
+                onChange={this.questionChange.bind(this)}
+              />
+               <CheckBox type={this.getType.bind(this)}  options={this.onChangeOptions.bind(this)}/>
             </CardText>
 
            <Col offset={3}>
@@ -571,7 +617,16 @@ else if(this.state.questType==5){
             <Divider />
               
              <CardText>
-               <DropDown type={this.getType.bind(this)} question={this.onChangeQuest.bind(this)}  options={this.onChangeOptions.bind(this)}/>
+             <TextField
+                hintText="Your Question"
+                hintStyle={{fontWeight:'bold'}}
+                value={this.state.questionQ}
+                multiLine={true}
+                underlineStyle={{borderColor:'#37861E '}}
+                style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
+                onChange={this.questionChange.bind(this)}
+              />
+               <DropDown type={this.getType.bind(this)} options={this.onChangeOptions.bind(this)}/>
             </CardText>
 
            <Col offset={3}>
@@ -598,7 +653,16 @@ else if(this.state.questType==6){
             <Divider />
               
              <CardText>
-               <YesOrNo type={this.getType.bind(this)} question={this.onChangeQuest.bind(this)}/>
+             <TextField
+                hintText="Your Question"
+                hintStyle={{fontWeight:'bold'}}
+                value={this.state.questionQ}
+                multiLine={true}
+                underlineStyle={{borderColor:'#37861E '}}
+                style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
+                onChange={this.questionChange.bind(this)}
+              />
+               <YesOrNo type={this.getType.bind(this)} />
             </CardText>
 
            <Col offset={3}>
@@ -625,7 +689,16 @@ else if(this.state.questType==7){
             <Divider />
               
              <CardText>
-               <SliderComponent getMaxValue={this.onChangeMax.bind(this)} getScale={this.onChangeScale.bind(this)} type={this.getType.bind(this)} question={this.onChangeQuest.bind(this)}/>
+              <TextField
+                  hintText="Your Question"
+                  hintStyle={{fontWeight:'bold'}}
+                  value={this.state.questionQ}
+                  multiLine={true}
+                  underlineStyle={{borderColor:'#37861E '}}
+                  style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
+                  onChange={this.questionChange.bind(this)}
+                />
+               <SliderComponent getMaxValue={this.onChangeMax.bind(this)} getScale={this.onChangeScale.bind(this)} type={this.getType.bind(this)} />
             </CardText>
 
            <Col offset={3}>
@@ -652,7 +725,16 @@ questions.pop();
             <Divider />
               
              <CardText>
-               <StarRate scale={this. onChangeStarScale.bind(this)}  type={this.getType.bind(this)} question={this.onChangeQuest.bind(this)}/>
+              <TextField
+                hintText="Your Question"
+                hintStyle={{fontWeight:'bold'}}
+                value={this.state.questionQ}
+                multiLine={true}
+                underlineStyle={{borderColor:'#37861E '}}
+                style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
+                onChange={this.questionChange.bind(this)}
+              />
+               <StarRate scale={this. onChangeStarScale.bind(this)}  type={this.getType.bind(this)} />
             </CardText>
 
            <Col offset={3}>
@@ -679,7 +761,16 @@ questions.pop();
             <Divider />
               
              <CardText>
-               <DatePicker type={this.getType.bind(this)} question={this.onChangeQuest.bind(this)}/>
+              <TextField
+                hintText="Your Question"
+                hintStyle={{fontWeight:'bold'}}
+                value={this.state.questionQ}
+                multiLine={true}
+                underlineStyle={{borderColor:'#37861E '}}
+                style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
+                onChange={this.questionChange.bind(this)}
+              />
+               <DatePicker type={this.getType.bind(this)} />
             </CardText>
 
            <Col offset={3}>
@@ -707,7 +798,16 @@ questions.pop();
             <Divider />
               
              <CardText>
-               <DateRange type={this.getType.bind(this)} question={this.onChangeQuest.bind(this)}/>
+              <TextField
+                hintText="Your Question"
+                hintStyle={{fontWeight:'bold'}}
+                value={this.state.questionQ}
+                multiLine={true}
+                underlineStyle={{borderColor:'#37861E '}}
+                style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
+                onChange={this.questionChange.bind(this)}
+              />
+               <DateRange type={this.getType.bind(this)} />
             </CardText>
 
            <Col offset={3}>
@@ -734,7 +834,16 @@ questions.pop();
             <Divider />
               
              <CardText>
-               <NumberChoice scale={this. onChangeNumberScale.bind(this)} type={this.getType.bind(this)} question={this.onChangeQuest.bind(this)}/>
+                <TextField
+                  hintText="Your Question"
+                  hintStyle={{fontWeight:'bold'}}
+                  value={this.state.questionQ}
+                  multiLine={true}
+                  underlineStyle={{borderColor:'#37861E '}}
+                  style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
+                  onChange={this.questionChange.bind(this)}
+                />
+               <NumberChoice scale={this. onChangeNumberScale.bind(this)} type={this.getType.bind(this)} />
             </CardText>
 
            <Col offset={3}>

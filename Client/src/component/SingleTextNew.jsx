@@ -26,27 +26,14 @@ class SingleTextNew extends Component {
     this.props.type("SingleText");
  }
  
-questionChange(e){
-  this.setState({
-     quest:e.target.value,
-   })
-   this.props.question(e.target.value);
-}
+
  
  render()
  {
   var components=[];
   
   components.push(<div>
-                      <TextField
-                          hintText="Your Question"
-                          hintStyle={{fontWeight:'bold'}}
-                          value={this.state.quest}
-                          multiLine={true}
-                          underlineStyle={{borderColor:'#37861E '}}
-                          style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
-                          onChange={this.questionChange.bind(this)}
-                      />
+                      
                       <TextField
                           hintText="Your Answer Here"
                           hintStyle={{fontWeight:'bold'}}
