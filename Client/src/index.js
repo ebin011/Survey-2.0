@@ -26,7 +26,6 @@ import Preview from './component/SamplePreview';
 import OutLink from './component/outLink'
 import DatePicker from './view/DatePicker';
 import DateRange from './view/DateRange';
-
 import FullPreview from './component/FullPreview';
 
 import UploadCSV from './component/uploadCSV';
@@ -37,7 +36,8 @@ injectTapEventPlugin();
 ReactDOM.render(
  <MuiThemeProvider>
  <Router history={hashHistory}>
-     <Route path="/" component={NewTemplate}/>
+     <Route path="/" component={CreateSurvey}/>
+     <Route path="/newTemplate/:sName" component={NewTemplate}/>
      <Route path="/Home" component={App}>
        <Route path="CreateSurvey" component={CreateSurvey}/>
        <Route path='Preview/:sName' component={Preview}/>

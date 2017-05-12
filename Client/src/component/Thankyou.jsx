@@ -112,7 +112,7 @@ constructor(props) {
 			"thanksMessage":this.state.thankyouMsg,
 			"createrContact":this.state.contact
 		}
-		request.post('http://10.201.174.176:9080/api/updateSurvey/'+sName)
+		request.post('http://10.42.0.130:9080/api/updateSurvey/'+sName)
 						.set('Content-Type', 'application/json')
 						.send(thankyouScreen)
 						 .end((err,res)=>
