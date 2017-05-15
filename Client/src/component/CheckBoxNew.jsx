@@ -8,6 +8,7 @@ import Divider from 'material-ui/Divider';
 import { Grid,Col,Row} from 'react-flexbox-grid';
 import Subheader from 'material-ui/Subheader';
 import Checkbox from 'material-ui/Checkbox';
+import request from 'superagent';
 
 import AddOptions from '../component/AddOptions';
  
@@ -27,8 +28,34 @@ class CheckBoxNew extends Component {
  }
 
  componentWillMount(){
+  if (this.props.getCheckboxOptions) {
+      this.props.getCheckboxOptions(this.oldOption());
+      console.log(this.props.index)
+    }
     this.props.type("Checkbox");
  }
+
+ oldOption() {
+    request.get('http://localhost:9080/api/getTempQuestions')
+
+    .end((err,res) => {
+      // if(res.body[i].questions[i].questionType=="MultiChoice"){
+       
+      //res.body.map((obj,i)=>{
+        if(res.body[this.props.index].questions[this.props.index].questionType=="Checkbox")
+        {
+        this.setState({
+         optionArr:res.body[this.props.index].questions[this.props.index].options,
+              });
+        }
+      //});
+      
+      if(err){console.log(err)}
+        
+    });
+   
+     console.log("Safe")
+  }
  
 questionChange(e){
   this.setState({

@@ -23,7 +23,7 @@ import NumberChoice from 'material-ui/svg-icons/navigation/more-horiz';
 
 class SelectType extends Component {
   state = {
-     value: 1,
+     value: null,
    };
 
      handleChange = (event, index, value) => {
@@ -39,7 +39,7 @@ render()
   return(<div>
   <SelectField
     floatingLabelText="Question Type"
-    floatingLabelStyle={{color:'#FFFFFF'}}
+    floatingLabelStyle={{textAlign:'left',color:'#FFFFFF'}}
     value={this.state.value}
     onChange={this.handleChange}
     menuStyle={{backgroundColor:'#283747'}}
@@ -47,7 +47,7 @@ render()
     labelStyle={{color:'#FFFFFF'}}
     iconStyle={{color: "#9698f1"}} 
   >
-  
+     <MenuItem value={null} primaryText="" />
      <MenuItem value={1} leftIcon={<ShortText />} primaryText="Short Text" />
      <MenuItem value={2} leftIcon={<Comment />} primaryText="Comment" />
      <MenuItem value={3} leftIcon={<MultiChoice />} primaryText="Multi Choice" />

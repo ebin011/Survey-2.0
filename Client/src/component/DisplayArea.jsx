@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { Component } from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
@@ -89,7 +88,6 @@ class DisplayArea extends Component {
 
    this.state = {
 
-
       questionArray:[],
       output:[],
 
@@ -108,14 +106,17 @@ class DisplayArea extends Component {
       type:'',
       questionQuest:'',
       optionsArr:[],
-      optionsEdit:[]
+      optionsEdit:[],
 
-
-      questionArray:[]
-
-
+      oldOptions:"get it"
+        
    }
  }
+ setoldOption(checkIndex) {
+    this.setState({ oldOptions: checkIndex });
+    
+    console.log("checkClass"+checkIndex)
+  }
  questionsFunction(fullArray)
   {
     this.setState({  questionArray:fullArray })
@@ -128,8 +129,7 @@ class DisplayArea extends Component {
     console.log(this.props);
   }
 
-
-
+  
  componentWillMount(){
     request.get('http://localhost:9080/api/getTempQuestions')
 
@@ -149,7 +149,7 @@ class DisplayArea extends Component {
     fillShadow.fill(0);
     this.setState({questionsShadow:fillShadow});
   }
-
+ 
  handleOnChange (i,value,event){
    var a=this.state.dataChange;
    a[i]=value
@@ -161,9 +161,9 @@ class DisplayArea extends Component {
     console.log(value);
     console.log(this.state.dataChange);
   }
-
+ 
  handleSliderChange(i,Maxvalue,e) {
-
+     
       var a=this.state.dataChange;
       a[i]=e.target.value
         console.log(this.state.dataChange);
@@ -245,7 +245,7 @@ handleInputFocus() {
    if (showOverlay) {
      this.input.focus();
    }
- }
+ }        
 handleContainerMouseDown() {
     this.clickedInside = true;
     // The input's onBlur method is called from a queue right after onMouseDown event.
@@ -291,7 +291,7 @@ handleContainerMouseDown() {
  }
 
  onChangeQuestType(quest){
-
+  
     var temp=this.state.avilableType;
     console.log("selected type"+temp[quest-1]);
     this.setState({ questType:temp[quest-1]})
@@ -301,19 +301,38 @@ questionQuestChange(e){
   this.setState({
      questionQuest:e.target.value,
    })
-
+   
 }
  getType(type)
   {
     this.setState({ type:type })
   }
-
+test(value){console.log("parent")}
 onChangeOptions(options)
   {
     this.setState({ optionsArr:options })
+  }  
+  /*Slider*/
+  onChangeMax(maxValue)
+  {
+    this.setState({ maxValue:maxValue });
+
   }
+   onChangeScale(scaleValue)
+  {
+    this.setState({ scaleValue:scaleValue });
 
-
+  }
+  /*Star Rating*/
+  onChangeStarScale(value)
+  {
+    this.setState({scale:value})
+  }
+  /*Number Choice*/
+ onChangeNumberScale(value)
+ {
+  this.setState({numberScale:value})
+ }
  onMouseOverQuestion(number,questionObject,editingTemplete)  {
   //this.setState({questionsShadow[number]: 3,questionSelection[number]:true});
   console.log("clicked"+number)
@@ -323,18 +342,18 @@ onChangeOptions(options)
   var makeTrue=this.state.questionSelection;
   makeTrue=[];
       makeTrue.fill(false,0,editingTemplete[0].length);
-      makeTrue[number]=({selection:true,"questionNumber":number,"questionQ":questionObject.questions[number].questionQ,"questionType":questionObject.questions[number].questionType});
+      makeTrue[number]=({selection:true,"questionNumber":number,"questionQ":questionObject.questions[number].questionQ,"questionType":questionObject.questions[number].questionType});                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
     this.setState({questionSelection:makeTrue,questType:questionObject.questions[number].questionType,questionQuest:questionObject.questions[number].questionQ,optionsEdit:tempOptions});
-
+ 
 
     console.log(makeTrue);
     var fillShadow=this.state.questionsShadow;
     fillShadow.splice(number,0,3);
     this.setState({questionsShadow:fillShadow});
 
-
+    
     console.log(questionObject);
-
+    
 }
  render()
  {
@@ -348,17 +367,12 @@ onChangeOptions(options)
 
 
 
-
-      finalTemplete.push(this.state.questionArray.map((fullQuestions,i)=>{
-        console.log("Full Data");
-        console.log(fullQuestions)
-
-
       if(this.state.output!=null)
       {
-
+        
       finalTemplete.push(this.state.output.map((obj,i)=>{
         //console.log("Full Data");
+        //console.log(obj.questions[i].questionType)
         //console.log(obj.questions[i].questionQ)
        if(obj.questions[i].questionType=='SingleText')
          {
@@ -377,7 +391,7 @@ onChangeOptions(options)
                           style={{width:'60%',marginTop:'3%                                                                                                                                                                                                                                                                                                                                   '}}
                     />
                </CardText>
-
+           
          </Card>)
       }
       if(obj.questions[i].questionType=='CommentText')
@@ -397,10 +411,10 @@ onChangeOptions(options)
                            underlineStyle={{borderColor:'#37861E '}}
                            minRows={5}
                            style={{width:'80%',marginLeft:'1%',marginTop:'4%'}}
-                           multiLine={true}
+                           multiLine={true} 
                      />
                </CardText>
-
+           
          </Card>)
       }
       if(obj.questions[i].questionType=='MultiChoice')
@@ -427,7 +441,7 @@ onChangeOptions(options)
                     {options}
                   </RadioButtonGroup>
                </CardText>
-
+           
           </Card>)
       }
       if(obj.questions[i].questionType=='Checkbox')
@@ -441,14 +455,14 @@ onChangeOptions(options)
                });
 
         return(
-           <Card >
+           <Card onClick={this.onMouseOverQuestion.bind(this,i,obj,finalTemplete)}>
                <CardText>
                   <h3 style={{marginTop:'3%',marginLeft:'3%',marginBottom:'3%',color:'#000000',textAlign:'left'}}>
                   {i+1}:{obj.questions[i].questionQ}
                   </h3>
                   {options}
                </CardText>
-
+           
          </Card>)
       }
       if(obj.questions[i].questionType=='Dropdown')
@@ -460,22 +474,21 @@ onChangeOptions(options)
             options.push(<MenuItem value={index} primaryText={option}/>);
               });
         return(
-           <Card >
+           <Card onClick={this.onMouseOverQuestion.bind(this,i,obj,finalTemplete)} >
                <CardText>
                   <h3 style={{marginTop:'3%',marginLeft:'3%',marginBottom:'3%',color:'#000000',textAlign:'left'}}>
                   {i+1}:{obj.questions[i].questionQ}
                   </h3>
                   <SelectField value={1}>{options}</SelectField>
                </CardText>
-
+           
          </Card>)
       }
       if(obj.questions[i].questionType=='YesOrNo')
          {
         return(
-           <Card >
+           <Card onClick={this.onMouseOverQuestion.bind(this,i,obj,finalTemplete)} >
                <CardText>
-
                   <h3 style={{marginTop:'3%',marginLeft:'3%',marginBottom:'3%',color:'#000000',textAlign:'left'}}>
                   {i+1}:{obj.questions[i].questionQ}
                   </h3>
@@ -492,15 +505,15 @@ onChangeOptions(options)
                       />
                   </RadioButtonGroup>
                </CardText>
-
+           
          </Card>)
       }
       if(obj.questions[i].questionType=='Slider')
           {
             tempValue=this.state.dataChange;
-
+            
         return(
-           <Card >
+           <Card onClick={this.onMouseOverQuestion.bind(this,i,obj,finalTemplete)}>
                <CardText>
                   <h3 style={{marginTop:'3%',marginLeft:'3%',marginBottom:'3%',color:'#000000',textAlign:'left'}}>
                   {i+1}:{obj.questions[i].questionQ}
@@ -531,15 +544,14 @@ onChangeOptions(options)
                   <span style={{fontWeight:'bold',marginLeft:'2%'}}>
                         {obj.questions[i].maxValue}
                   </span>
-
                </CardText>
-
+           
          </Card>)
       }
       if(obj.questions[i].questionType=='StarRating')
-         {
+         { 
            var options=[];
-
+           
               options.push(
                 <section  style={{marginLeft:'30%'}} >
                   <ReactStars
@@ -549,24 +561,24 @@ onChangeOptions(options)
                     size={35}
                     color2={this.state.starColor} />
                     <p style={{fontWeight:'bold',textAlign:'left',fontSize:'115%',marginLeft:'3%'}}>{this.state.starComment}</p>
-                </section>
+                </section>    
                       );
 
         return(
-           <Card >
+           <Card onClick={this.onMouseOverQuestion.bind(this,i,obj,finalTemplete)} >
                <CardText>
                   <h3 style={{marginTop:'3%',marginLeft:'3%',marginBottom:'3%',color:'#000000',textAlign:'left'}}>
                   {i+1}:{obj.questions[i].questionQ}
                   </h3>
                   {options}
                </CardText>
-
+           
          </Card>)
       }
       if(obj.questions[i].questionType=='DatePicker')
          {
         return(
-           <Card >
+           <Card onClick={this.onMouseOverQuestion.bind(this,i,obj,finalTemplete)}>
                <CardText>
                   <h3 style={{marginTop:'3%',marginLeft:'3%',marginBottom:'3%',color:'#000000',textAlign:'left'}}>
                   {i+1}:{obj.questions[i].questionQ}
@@ -597,13 +609,13 @@ onChangeOptions(options)
                       }
                   </section>
                </CardText>
-
+           
          </Card>)
       }
       if(obj.questions[i].questionType=='DateRange')
          {
         return(
-           <Card >
+           <Card onClick={this.onMouseOverQuestion.bind(this,i,obj,finalTemplete)} >
                <CardText>
                   <h3 style={{marginTop:'3%',marginLeft:'3%',marginBottom:'3%',color:'#000000',textAlign:'left'}}>
                   {i+1}:{obj.questions[i].questionQ}
@@ -633,7 +645,7 @@ onChangeOptions(options)
                     />
                   </section>
                </CardText>
-
+           
          </Card>)
       }
       if(obj.questions[i].questionType=='NumberChoice')
@@ -652,7 +664,7 @@ onChangeOptions(options)
 
               });
           return(
-            <Card >
+            <Card onClick={this.onMouseOverQuestion.bind(this,i,obj,finalTemplete)}>
                <CardText>
                   <h3 style={{marginTop:'3%',marginLeft:'3%',marginBottom:'3%',color:'#000000',textAlign:'left'}}>
                   {i+1}:{obj.questions[i].questionQ}
@@ -661,25 +673,25 @@ onChangeOptions(options)
                     {options}
                   </RadioButtonGroup>
                </CardText>
-
+           
           </Card>)
       }
             }));
     }
-
+    
     this.state.questionSelection.map((val,index)=>{
-
+        
       if(val.selection==true)
       {
         console.log("index"+index);
         if(this.state.questType=='SingleText' )
          {
-
+         
          console.log("inside single text");
         return(
         finalTemplete[0].splice(index,1,<Card>
           <CardHeader>
-                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  />
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
             </CardHeader>
 
             <Divider />
@@ -698,23 +710,23 @@ onChangeOptions(options)
           <Col offset={3}>
               <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
                      <DuplicateButton style={iconStyles}/>
-              </IconButton>
+              </IconButton>  
               <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
                      <CloseButton style={iconStyles}/>
               </IconButton>
-
-          </Col>
+              
+          </Col>      
         </Card>)
         )
       }
       else if(this.state.questType=='CommentText' )
          {
-
-            console.log("inside comment text");
+         
+            console.log("inside comment text");        
         return(
         finalTemplete[0].splice(index,1,<Card>
           <CardHeader>
-                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  />
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
             </CardHeader>
 
             <Divider />
@@ -733,23 +745,23 @@ onChangeOptions(options)
           <Col offset={3}>
               <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
                      <DuplicateButton style={iconStyles}/>
-              </IconButton>
+              </IconButton>  
               <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
                      <CloseButton style={iconStyles}/>
               </IconButton>
-
-          </Col>
+              
+          </Col>      
         </Card>)
         )
       }
       else if(this.state.questType=='MultiChoice' )
          {
-
-            console.log("inside comment text");
+         
+            console.log("inside comment text");        
         return(
-        finalTemplete[0].splice(index,1,<Card onClick={this.props.onOptionChange.bind(this)}>
+        finalTemplete[0].splice(index,1,<Card >
           <CardHeader>
-                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  />
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
             </CardHeader>
 
             <Divider />
@@ -763,30 +775,318 @@ onChangeOptions(options)
                 style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
                 onChange={this.questionQuestChange.bind(this)}
             />
-             <MultiChoice type={this.getType.bind(this)}  options={this.onChangeOptions.bind(this)}  />
+             <MultiChoice  getMultiChoiceOptions={ oldOptions => this.setoldOption(index) } index={index} type={this.getType.bind(this)}  options={this.onChangeOptions.bind(this)}  />
           </CardText>
           <Col offset={3}>
               <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
                      <DuplicateButton style={iconStyles}/>
-              </IconButton>
+              </IconButton>  
               <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
                      <CloseButton style={iconStyles}/>
               </IconButton>
+              
+          </Col>      
+        </Card>)
+        )
+      }
+      else if(this.state.questType=='Checkbox' )
+         {
+         
+            console.log("inside comment text");        
+        return(
+        finalTemplete[0].splice(index,1,<Card >
+          <CardHeader>
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
+            </CardHeader>
 
-          </Col>
+            <Divider />
+          <CardText>
+            <TextField
+                hintText="Your Question"
+                hintStyle={{fontWeight:'bold'}}
+                value={this.state.questionQuest}
+                multiLine={true}
+                underlineStyle={{borderColor:'#37861E '}}
+                style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
+                onChange={this.questionQuestChange.bind(this)}
+            />
+             
+             <CheckBox getCheckboxOptions={ oldOptions => this.setoldOption(index) } index={index} type={this.getType.bind(this)}  options={this.onChangeOptions.bind(this)}/>
+          </CardText>
+          <Col offset={3}>
+              <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
+                     <DuplicateButton style={iconStyles}/>
+              </IconButton>  
+              <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
+                     <CloseButton style={iconStyles}/>
+              </IconButton>
+              
+          </Col>      
+        </Card>)
+        )
+      }
+      else if(this.state.questType=='Dropdown' )
+         {
+         
+            console.log("inside comment text");        
+        return(
+        finalTemplete[0].splice(index,1,<Card >
+          <CardHeader>
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
+            </CardHeader>
+
+            <Divider />
+          <CardText>
+            <TextField
+                hintText="Your Question"
+                hintStyle={{fontWeight:'bold'}}
+                value={this.state.questionQuest}
+                multiLine={true}
+                underlineStyle={{borderColor:'#37861E '}}
+                style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
+                onChange={this.questionQuestChange.bind(this)}
+            />
+             
+             <DropDown getDropdownOptions={ oldOptions => this.setoldOption(index) } index={index} type={this.getType.bind(this)} options={this.onChangeOptions.bind(this)}/>
+          </CardText>
+          <Col offset={3}>
+              <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
+                     <DuplicateButton style={iconStyles}/>
+              </IconButton>  
+              <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
+                     <CloseButton style={iconStyles}/>
+              </IconButton>
+              
+          </Col>      
+        </Card>)
+        )
+      }
+      else if(this.state.questType=='YesOrNo' )
+         {
+         
+            console.log("inside comment text");        
+        return(
+        finalTemplete[0].splice(index,1,<Card >
+          <CardHeader>
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
+            </CardHeader>
+
+            <Divider />
+          <CardText>
+            <TextField
+                hintText="Your Question"
+                hintStyle={{fontWeight:'bold'}}
+                value={this.state.questionQuest}
+                multiLine={true}
+                underlineStyle={{borderColor:'#37861E '}}
+                style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
+                onChange={this.questionQuestChange.bind(this)}
+            />
+             
+            <YesOrNo type={this.getType.bind(this)} />
+          </CardText>
+          <Col offset={3}>
+              <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
+                     <DuplicateButton style={iconStyles}/>
+              </IconButton>  
+              <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
+                     <CloseButton style={iconStyles}/>
+              </IconButton>
+              
+          </Col>      
+        </Card>)
+        )
+      }
+      else if(this.state.questType=='Slider' )
+         {
+         
+            console.log("inside comment text");        
+        return(
+        finalTemplete[0].splice(index,1,<Card >
+          <CardHeader>
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
+            </CardHeader>
+
+            <Divider />
+          <CardText>
+            <TextField
+                hintText="Your Question"
+                hintStyle={{fontWeight:'bold'}}
+                value={this.state.questionQuest}
+                multiLine={true}
+                underlineStyle={{borderColor:'#37861E '}}
+                style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
+                onChange={this.questionQuestChange.bind(this)}
+            />
+             
+             <SliderComponent getSliderOptions={ oldOptions => this.setoldOption(index) } index={index} type={this.getType.bind(this)} getMaxValue={this.onChangeMax.bind(this)} getScale={this.onChangeScale.bind(this)}/>
+          </CardText>
+          <Col offset={3}>
+              <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
+                     <DuplicateButton style={iconStyles}/>
+              </IconButton>  
+              <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
+                     <CloseButton style={iconStyles}/>
+              </IconButton>
+              
+          </Col>      
+        </Card>)
+        )
+      }
+      else if(this.state.questType=='StarRating' )
+         {
+         
+            console.log("inside comment text");        
+        return(
+        finalTemplete[0].splice(index,1,<Card >
+          <CardHeader>
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
+            </CardHeader>
+
+            <Divider />
+          <CardText>
+            <TextField
+                hintText="Your Question"
+                hintStyle={{fontWeight:'bold'}}
+                value={this.state.questionQuest}
+                multiLine={true}
+                underlineStyle={{borderColor:'#37861E '}}
+                style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
+                onChange={this.questionQuestChange.bind(this)}
+            />
+             
+             <StarRate getStarOptions={ oldOptions => this.setoldOption(index) } index={index} type={this.getType.bind(this)} scale={this. onChangeStarScale.bind(this)}/>
+          </CardText>
+          <Col offset={3}>
+              <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
+                     <DuplicateButton style={iconStyles}/>
+              </IconButton>  
+              <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
+                     <CloseButton style={iconStyles}/>
+              </IconButton>
+              
+          </Col>      
+        </Card>)
+        )
+      }
+      else if(this.state.questType=='DatePicker' )
+         {
+         
+            console.log("inside comment text");        
+        return(
+        finalTemplete[0].splice(index,1,<Card >
+          <CardHeader>
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
+            </CardHeader>
+
+            <Divider />
+          <CardText>
+            <TextField
+                hintText="Your Question"
+                hintStyle={{fontWeight:'bold'}}
+                value={this.state.questionQuest}
+                multiLine={true}
+                underlineStyle={{borderColor:'#37861E '}}
+                style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
+                onChange={this.questionQuestChange.bind(this)}
+            />
+             
+            <DatePicker type={this.getType.bind(this)} />
+          </CardText>
+          <Col offset={3}>
+              <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
+                     <DuplicateButton style={iconStyles}/>
+              </IconButton>  
+              <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
+                     <CloseButton style={iconStyles}/>
+              </IconButton>
+              
+          </Col>      
+        </Card>)
+        )
+      }
+      else if(this.state.questType=='DateRange' )
+         {
+         
+            console.log("inside comment text");        
+        return(
+        finalTemplete[0].splice(index,1,<Card >
+          <CardHeader>
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
+            </CardHeader>
+
+            <Divider />
+          <CardText>
+            <TextField
+                hintText="Your Question"
+                hintStyle={{fontWeight:'bold'}}
+                value={this.state.questionQuest}
+                multiLine={true}
+                underlineStyle={{borderColor:'#37861E '}}
+                style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
+                onChange={this.questionQuestChange.bind(this)}
+            />
+             
+            <DateRange type={this.getType.bind(this)} />
+          </CardText>
+          <Col offset={3}>
+              <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
+                     <DuplicateButton style={iconStyles}/>
+              </IconButton>  
+              <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
+                     <CloseButton style={iconStyles}/>
+              </IconButton>
+              
+          </Col>      
+        </Card>)
+        )
+      }
+      else if(this.state.questType=='NumberChoice' )
+         {
+         
+            console.log("inside comment text");        
+        return(
+        finalTemplete[0].splice(index,1,<Card >
+          <CardHeader>
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
+            </CardHeader>
+
+            <Divider />
+          <CardText>
+            <TextField
+                hintText="Your Question"
+                hintStyle={{fontWeight:'bold'}}
+                value={this.state.questionQuest}
+                multiLine={true}
+                underlineStyle={{borderColor:'#37861E '}}
+                style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
+                onChange={this.questionQuestChange.bind(this)}
+            />
+             
+            <NumberChoice getNumberChoiceOptions={ oldOptions => this.setoldOption(index) } index={index} type={this.getType.bind(this)} scale={this. onChangeNumberScale.bind(this)} />
+          </CardText>
+          <Col offset={3}>
+              <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
+                     <DuplicateButton style={iconStyles}/>
+              </IconButton>  
+              <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
+                     <CloseButton style={iconStyles}/>
+              </IconButton>
+              
+          </Col>      
         </Card>)
         )
       }
       }
-
+      
     });
-
+  
 
    return(<div>
-
-
+     
+      
                 {finalTemplete}
-
+                
    </div>);
  }
 }

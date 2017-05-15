@@ -9,6 +9,7 @@ import { Grid,Col,Row} from 'react-flexbox-grid';
 import Subheader from 'material-ui/Subheader';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import request from 'superagent';
 
 import AddOptions from '../component/AddOptions';
  
@@ -28,8 +29,36 @@ class DropDownNew extends Component {
  }
 
  componentWillMount(){
+    
+    if (this.props.getDropdownOptions) {
+      this.props.getDropdownOptions(this.oldOption());
+      console.log(this.props.index)
+    }
+
     this.props.type("Dropdown");
  }
+ 
+oldOption() {
+    request.get('http://localhost:9080/api/getTempQuestions')
+
+    .end((err,res) => {
+      // if(res.body[i].questions[i].questionType=="MultiChoice"){
+       
+      //res.body.map((obj,i)=>{
+        if(res.body[this.props.index].questions[this.props.index].questionType=="Dropdown")
+        {
+        this.setState({
+         optionArr:res.body[this.props.index].questions[this.props.index].options,
+              });
+        }
+      //});
+      
+      if(err){console.log(err)}
+        
+    });
+   
+     console.log("Safe")
+  }
  
 questionChange(e){
   this.setState({

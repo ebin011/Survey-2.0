@@ -40,7 +40,7 @@ class SurveyDetails extends Component{
     }
 
 
-    request.post('http://10.42.0.130:9080/api/createSurvey')
+    request.post('http://10.201.174.176:9080/api/createSurvey')
 
             .set('Content-Type', 'application/json')
             .send(nameData)

@@ -1,6 +1,6 @@
 module.exports = {
 
 
-  serverUrl: 'http://10.42.0.130:9080'
+  serverUrl: 'http://10.201.174.176:9080'
 
 };

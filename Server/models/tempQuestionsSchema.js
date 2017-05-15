@@ -17,13 +17,7 @@ const questionsSchema=new Schema({
 });
 const TempSchema = new Schema({
 	surveyname:{type:String},
-	welcomeMsg:{type:String},
-	description:{type:String},
-	thanksMsg:{type:String},
-	createrName:{type:String},
-	createrContact:{type:Number},
-	createrMail:{type:String},
-  questions:[questionsSchema]
+    questions:[questionsSchema]
 });
 
-module.exports=mongoose.model('surveyTempData',TempSchema);
+module.exports=mongoose.model('surveyTempquestions',TempSchema);

@@ -9,7 +9,7 @@ const createSurveyConfigRoute=require('./route/createSurvey.route');
 const getTempData=require('./route/getTempData');
 const getResultConfigRoute=require('./route/getResult.route');
 const addResult=require('./route/addResult.route');
-const newtemp=require('./route/newtemp')
+
 const http = require('http');
 const mongoose = require('mongoose');
 const connection=mongoose.connect('mongodb://localhost/surveyDetails');
@@ -28,7 +28,6 @@ app.use('/',createSurveyConfigRoute);
 app.use('/',getTempData);
 app.use('/',getResultConfigRoute);
 app.use('/',addResult);
-app.use('/',newtemp);
 
 // var transporter = nodemailer.createTransport({
 

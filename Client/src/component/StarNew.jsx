@@ -10,6 +10,7 @@ import Subheader from 'material-ui/Subheader';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import ReactStars from 'react-stars';
+import request from 'superagent';
 
 
 var val=0;
@@ -39,8 +40,35 @@ class StarRatingNew extends Component {
  }
 
  componentWillMount(){
+    if (this.props.getStarOptions) {
+      this.props.getStarOptions(this.oldOption());
+      console.log(this.props.index)
+    }
+
     this.props.type("StarRating");
  }
+
+ oldOption() {
+    request.get('http://localhost:9080/api/getTempQuestions')
+
+    .end((err,res) => {
+      // if(res.body[i].questions[i].questionType=="MultiChoice"){
+       
+      //res.body.map((obj,i)=>{
+        if(res.body[this.props.index].questions[this.props.index].questionType=="StarRating")
+        {
+        this.setState({
+         value:res.body[this.props.index].questions[this.props.index].scale,
+              });
+        }
+      //});
+      
+      if(err){console.log(err)}
+        
+    });
+   
+     console.log("Safe")
+  }
  
 questionChange(e){
 
@@ -122,15 +150,7 @@ questionChange(e){
 
       components.push( <Col xs={12} >
 
-               <TextField
-                  hintText="Your Question"
-                  hintStyle={{fontWeight:'bold'}}
-                  value={this.state.quest}
-                  multiLine={true}
-                  underlineStyle={{borderColor:'#37861E '}}
-                  style={{marginTop:0,marginLeft:'2%',width:'80%',marginBottom:0,color:'#000000',textAlign:'left'}}
-                  onChange={this.questionChange.bind(this)}
-                 />
+               
 
                 <SelectField
                   floatingLabelText="Select Scale"

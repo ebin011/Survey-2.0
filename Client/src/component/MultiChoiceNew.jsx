@@ -34,27 +34,41 @@ class MultiChoiceNew extends Component {
 
  componentWillMount(){
 
+if (this.props.getMultiChoiceOptions) {
+      this.props.getMultiChoiceOptions(this.oldOption());
+      console.log(this.props.index)
+    }
+   
+    this.props.type("MultiChoice");
+
+    // if (this.props.getCheck) {
+    //   // TODO: Get "weatherData" from somewhere (maybe from this.props.weather ??)
+    //   this.props.getCheck(this.appCheck());
+    // }
+ }
+
+  oldOption() {
     request.get('http://localhost:9080/api/getTempQuestions')
 
     .end((err,res) => {
       // if(res.body[i].questions[i].questionType=="MultiChoice"){
        
-      res.body.map((obj,i)=>{
-        if(obj.questions[i].questionType=="MultiChoice")
+      //res.body.map((obj,i)=>{
+        if(res.body[this.props.index].questions[this.props.index].questionType=="MultiChoice")
         {
         this.setState({
-         optionArr:res.body[i].questions[i].options,
+         optionArr:res.body[this.props.index].questions[this.props.index].options,
               });
         }
-      });
+      //});
       
       if(err){console.log(err)}
         
     });
    
-
-    this.props.type("MultiChoice");
- }
+     console.log("Safe")
+  }
+  
 
  
  
@@ -92,10 +106,8 @@ questionChange(e){
 
       
   }
+
   
-  onOptionChange(){
-    console.log("get it");
-  }
 
  render()
  {

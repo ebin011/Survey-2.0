@@ -64,7 +64,7 @@ class TakeSurvey extends React.Component {
 
 
 
-    request.get('http://10.42.0.130:9080/api/getSurvey/'+sName).end((err,res)=>{
+    request.get('http://10.201.174.176:9080/api/getSurvey/'+sName).end((err,res)=>{
 
 
       this.setState({
@@ -98,7 +98,7 @@ name=this.state.name;
 
 var data1={};
     var data1={surveyName:sName,name:name,options:this.state.commentValue}
-        request.put('http://10.42.0.130:9080/api/answerSurvey/'+sName)
+        request.put('http://10.201.174.176:9080/api/answerSurvey/'+sName)
 
                 .set('Content-Type', 'application/json')
                 .send(data1)
@@ -155,7 +155,7 @@ Welcome=()=>{
   var sName=this.props.params.sName;
   var dataDetails={};
       dataDetails={surveyName:sName,name:this.state.name,id:this.state.id,role:this.state.role}
-          request.put('http://10.42.0.130:9080/api/userDetails/'+sName)
+          request.put('http://10.201.174.176:9080/api/userDetails/'+sName)
 
                   .set('Content-Type', 'application/json')
                   .send(dataDetails)

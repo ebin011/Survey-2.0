@@ -87,7 +87,7 @@ class DraftDisplay extends Component{
   };
    componentWillMount(){
      request
-     .get('http://10.42.0.130:9080/api/getDetails/')
+     .get('http://10.201.174.176:9080/api/getDetails/')
      .end((err,res) => {
        this.setState({
          output:res.body
@@ -97,7 +97,7 @@ class DraftDisplay extends Component{
    }
   handleOpen(name){
     var status={status:'Running'}
-  request.put('http://10.42.0.130:9080/api/publishSurvey/'+name)
+  request.put('http://10.201.174.176:9080/api/publishSurvey/'+name)
           .set('Content-Type', 'application/json')
           .send(status)
            .then((err,res)=>

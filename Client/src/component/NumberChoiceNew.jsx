@@ -11,6 +11,7 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import ReactStars from 'react-stars';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import request from 'superagent';
 
 var val=0;
 
@@ -37,8 +38,33 @@ class NumberChoiceNew extends Component {
  }
 
  componentWillMount(){
+  if (this.props.getNumberChoiceOptions) {
+      this.props.getNumberChoiceOptions(this.oldOption());
+      console.log(this.props.index)
+    }
     this.props.type("NumberChoice");
  }
+ oldOption() {
+    request.get('http://localhost:9080/api/getTempQuestions')
+
+    .end((err,res) => {
+      // if(res.body[i].questions[i].questionType=="MultiChoice"){
+       
+      //res.body.map((obj,i)=>{
+        if(res.body[this.props.index].questions[this.props.index].questionType=="NumberChoice")
+        {
+        this.setState({
+         value:res.body[this.props.index].questions[this.props.index].scale,
+              });
+        }
+      //});
+      
+      if(err){console.log(err)}
+        
+    });
+   
+     console.log("Safe")
+  }
  
 questionChange(e){
 

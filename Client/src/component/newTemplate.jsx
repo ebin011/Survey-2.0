@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
@@ -12,11 +11,16 @@ import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import request from 'superagent';
+
+
 import CloseButton from 'material-ui/svg-icons/navigation/close';
 import DuplicateButton from 'material-ui/svg-icons/content/content-copy';
 import Add from 'material-ui/svg-icons/content/add-circle';
+
 import EditButton from 'material-ui/svg-icons/image/edit';
+
 import {IndexLink, Link} from 'react-router';
+
 import SelectType from './SelectType';
 import AddOptions from '../component/AddOptions';
 import MultiChoice from '../component/MultiChoiceNew';
@@ -31,9 +35,11 @@ import DatePicker from '../component/DatePickerNew';
 import DateRange from '../component/DateRangeNew';
 import NumberChoice from '../component/NumberChoiceNew';
 import DisplayArea from '../component/DisplayArea';
+
 import ReactStars from 'react-stars';
 import Slider from 'react-rangeslider';
 import 'react-rangeslider/lib/index.css';
+
 import Dialog from 'material-ui/Dialog';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
@@ -121,7 +127,7 @@ class NewTemplate  extends Component {
        scaleValue:0,
        numberScale:0,
        checkText:'check text'
-
+     
     }
   }
 onMouseOverWelcome = () => this.setState({welShadow: 3,welcome:true,thankYou:false,question:false,queShadow:0,thanksShadow:0});
@@ -130,81 +136,28 @@ onMouseOverthanks = () => this.setState({thanksShadow: 3,thankYou:true,welcome:f
 
 welcomeChange(e){
   this.setState({welcomeMsg:e.target.value});
-  console.log("e.target.value",e.target.value);
-  var x={welcomeMsg:e.target.value};
-  console.log("var x",x)
-  request.put('http://localhost:9080/api/addData')
-  .set('Content-Type','application/json')
-  .send(x)
-  .then((err,res)=>{
-    console.log("posted welcome msg");
-  });
-};
+
+}
 
 descriptionChange(e){
   this.setState({description:e.target.value});
-  console.log("e.target.value",e.target.value);
-  var x={description:e.target.value};
-  console.log("var x",x)
-  request.put('http://localhost:9080/api/addData')
-  .set('Content-Type','application/json')
-  .send(x)
-  .then((err,res)=>{
-    console.log("posted discription");
-  });
-};
+}
 
 thanksChange(e){
    this.setState({thanksMsg:e.target.value});
-   console.log("e.target.value",e.target.value);
-   var x={thanksMsg:e.target.value};
-   console.log("var x",x)
-   request.put('http://localhost:9080/api/addData')
-   .set('Content-Type','application/json')
-   .send(x)
-   .then((err,res)=>{
-     console.log("posted thanks message");
-   });
-};
+}
 
 createrNameChange(e){
    this.setState({createrName:e.target.value});
-   console.log("e.target.value",e.target.value);
-   var x={createrName:e.target.value};
-   console.log("var x",x)
-   request.put('http://localhost:9080/api/addData')
-   .set('Content-Type','application/json')
-   .send(x)
-   .then((err,res)=>{
-     console.log("posted createrName");
-   });
-};
+}
 
 createrContactChange(e){
    this.setState({createrContact:e.target.value});
-   console.log("e.target.value",e.target.value);
-   var x={createrContact:e.target.value};
-   console.log("var x",x)
-   request.put('http://localhost:9080/api/addData')
-   .set('Content-Type','application/json')
-   .send(x)
-   .then((err,res)=>{
-     console.log("posted creater contact");
-   });
-};
+}
 
 createrMailChange(e){
    this.setState({createrMail:e.target.value});
-   console.log("e.target.value",e.target.value);
-   var x={createrMail:e.target.value};
-   console.log("var x",x)
-   request.put('http://localhost:9080/api/addData')
-   .set('Content-Type','application/json')
-   .send(x)
-   .then((err,res)=>{
-     console.log("posted creater email");
-   });
-};
+}
 
 // questionChange(e){
 //   // var temp=this.state.fullTemplate;
@@ -232,47 +185,47 @@ addNewQuestion(question,type,options,scale,maxValue){
 
     //arr[index]=value;
     if(tempType=="SingleText")  {
-
+        
         arr[index]=({"questionType":type,"questionQ":question,"options":options});
         console.log("inside");
 
       }
     else if(tempType=="CommentText")  {
-
+        
         arr[index]=({"questionType":type,"questionQ":question,"options":options});
         console.log("inside");
 
       }
     else if(tempType=="MultiChoice")  {
-
+        
         arr[index]=({"questionType":type,"questionQ":question,"options":options});
         console.log("inside");
 
       }
     else if(tempType=="Checkbox")  {
-
+        
         arr[index]=({"questionType":type,"questionQ":question,"options":options});
         console.log("inside");
 
       }
     else if(tempType=="Dropdown")  {
-
+        
         arr[index]=({"questionType":type,"questionQ":question,"options":options});
         console.log("inside");
 
       }
     else if(tempType=="YesOrNo")  {
-
+        
         arr[index]=({"questionType":type,"questionQ":question,"options":options});
         console.log("inside");
 
       }
     else if(tempType=="Slider")  {
-
+        
         arr[index]=({"questionType":type,"questionQ":question,"options":options,"scale":scale,"maxValue":maxValue});
         console.log("inside");
 
-      }
+      } 
     else if(tempType=="StarRating")  {
         optionTempArray=[];
 
@@ -284,21 +237,21 @@ addNewQuestion(question,type,options,scale,maxValue){
         arr[index]=({"questionType":type,"questionQ":question,"options":optionTempArray,"scale":scale});
         console.log("inside");
 
-      }
+      } 
 
     else if(tempType=="DatePicker")  {
-
+        
         arr[index]=({"questionType":type,"questionQ":question,"options":options});
         console.log("inside");
 
-      }
+      } 
 
     else if(tempType=="DateRange")  {
-
+        
         arr[index]=({"questionType":type,"questionQ":question,"options":options});
         console.log("inside");
 
-      }
+      }   
 
     else if(tempType=="NumberChoice")  {
       optionTempArray=[];
@@ -308,11 +261,11 @@ addNewQuestion(question,type,options,scale,maxValue){
             optionTempArray.push(++i);
 
             }
-
+        
         arr[index]=({"questionType":type,"questionQ":question,"options":optionTempArray,"scale":scale});
         console.log("inside");
 
-      }
+      }    
 
     this.setState({fullTemplate:arr});
     var result={questions:arr[0]};
@@ -339,8 +292,8 @@ addNewQuestion(question,type,options,scale,maxValue){
 
             })
     //this.props.tempArr(this.state.checkText);
-
-
+    
+  
 }
 
  /*Editing Props Value*/
@@ -363,7 +316,7 @@ questionChange(e){
   {
     this.setState({  questionQ:quest })
   }
-
+  
   /*Slider*/
   onChangeMax(maxValue)
   {
@@ -391,8 +344,8 @@ questionChange(e){
   componentWillMount() {
 
     }
-
-
+    
+  
 
 render() {
    var welcomeTitle=[];
@@ -401,7 +354,7 @@ render() {
    //var options=[];
    //var  selOpt=[];
 
-
+    
 
    welcomeTitle.push(
   <Col xs={12}>
@@ -416,18 +369,18 @@ render() {
         <Card
             onClick={this.onMouseOverQuestions}
             zDepth={this.state.queShadow}
-            >
+            >  
             <CardHeader>
-
-
-                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  />
-
+              
+                
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
+             
             </CardHeader>
             <Divider />
             <CardText>
           <h3 style={{marginTop:'5%',marginBottom:'5%',color:'#818181',height:'50%'}}>Your Questions </h3>
-          </CardText>
-
+          </CardText>  
+          
         </Card>
        </Col>
       );
@@ -446,15 +399,15 @@ render() {
         welcomeTitle.pop();
         questions.pop();
         welcomeTitle.push(<div>
-        <TextField
+        <TextField 
          id="text-field-welcome"
          value={this.state.welcomeMsg}
          style={{marginTop:'2%',marginBottom:'2%',paddingTop:10,width:'80%',fontSize:'150%'}}
          inputStyle={{color:'#FFFFFF'}}
          onChange={this.welcomeChange.bind(this)} />
-
+        
          <Divider/>
-        <TextField
+        <TextField 
         style={{marginTop:'1%',marginLeft:'1%',width:'80%',textAlign:'left'}}
         id="text-field-description"
         value={this.state.description}
@@ -469,31 +422,31 @@ render() {
         thanksMessage.pop();
         questions.pop();
         thanksMessage.push(<div>
-          <TextField
+          <TextField 
          id="text-field-thanks"
-         value={this.state.thanksMsg}
+         value={this.state.thanksMsg} 
          style={{marginTop:'2%',marginBottom:'2%'}}
          inputStyle={{color:'#FFFFFF'}}
           onChange={this.thanksChange.bind(this)}
          />
           <Divider/>
-          <TextField
+          <TextField 
          id="text-field-createrName"
-         value={this.state.createrName}
+         value={this.state.createrName} 
          style={{marginTop:'2%',marginBottom:'2%'}}
          inputStyle={{color:'#FFFFFF'}}
           onChange={this.createrNameChange.bind(this)}
          />
-          <TextField
+          <TextField 
          id="text-field-createrContact"
-         value={this.state.createrContact}
+         value={this.state.createrContact} 
          style={{marginTop:'2%',marginBottom:'2%'}}
          inputStyle={{color:'#FFFFFF'}}
          onChange={this.createrContactChange.bind(this)}
          />
-         <TextField
+         <TextField 
          id="text-field-createrMail"
-         value={this.state.createrMail}
+         value={this.state.createrMail} 
          style={{marginTop:'2%',marginBottom:'2%'}}
          inputStyle={{color:'#FFFFFF'}}
           onChange={this.createrMailChange.bind(this)}
@@ -502,21 +455,21 @@ render() {
       }
       if(this.state.question)
       {
-
+        
          questions.pop();
 
-
-
+   
+               
 if(this.state.questType==1){
-
+            
    questions.pop();
    questions.push( <Card>
             <CardHeader>
-                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  />
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
             </CardHeader>
 
             <Divider />
-
+              
              <CardText>
              <TextField
                 hintText="Your Question"
@@ -533,7 +486,7 @@ if(this.state.questType==1){
            <Col offset={3}>
               <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
                      <DuplicateButton style={iconStyles}/>
-              </IconButton>
+              </IconButton>  
               <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
                      <CloseButton style={iconStyles}/>
               </IconButton>
@@ -541,19 +494,19 @@ if(this.state.questType==1){
                      <Add style={iconStyles}/>
               </IconButton>
           </Col>
-  </Card>);
+  </Card>); 
 
 }
 else if(this.state.questType==2){
-
+             
    questions.pop();
    questions.push( <Card>
             <CardHeader>
-                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  />
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
             </CardHeader>
 
             <Divider />
-
+              
              <CardText>
              <TextField
                 hintText="Your Question"
@@ -570,7 +523,7 @@ else if(this.state.questType==2){
            <Col offset={3}>
               <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
                      <DuplicateButton style={iconStyles}/>
-              </IconButton>
+              </IconButton>  
               <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
                      <CloseButton style={iconStyles}/>
               </IconButton>
@@ -578,18 +531,18 @@ else if(this.state.questType==2){
                      <Add style={iconStyles}/>
               </IconButton>
           </Col>
-  </Card>);
+  </Card>); 
   }
 else if(this.state.questType==3){
 
    questions.pop();
    questions.push( <Card>
             <CardHeader>
-                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  />
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
             </CardHeader>
 
             <Divider />
-
+              
              <CardText>
               <TextField
                 hintText="Your Question"
@@ -606,7 +559,7 @@ else if(this.state.questType==3){
            <Col offset={3}>
               <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
                      <DuplicateButton style={iconStyles}/>
-              </IconButton>
+              </IconButton>  
               <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
                      <CloseButton style={iconStyles}/>
               </IconButton>
@@ -614,18 +567,18 @@ else if(this.state.questType==3){
                      <Add style={iconStyles}/>
               </IconButton>
           </Col>
-  </Card>);
+  </Card>);  
 }
 else if(this.state.questType==4){
 
   questions.pop();
    questions.push( <Card>
             <CardHeader>
-                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  />
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
             </CardHeader>
 
             <Divider />
-
+              
              <CardText>
              <TextField
                 hintText="Your Question"
@@ -642,7 +595,7 @@ else if(this.state.questType==4){
            <Col offset={3}>
               <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
                      <DuplicateButton style={iconStyles}/>
-              </IconButton>
+              </IconButton>  
               <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
                      <CloseButton style={iconStyles}/>
               </IconButton>
@@ -650,19 +603,19 @@ else if(this.state.questType==4){
                      <Add style={iconStyles}/>
               </IconButton>
           </Col>
-  </Card>);
+  </Card>);  
 }
 else if(this.state.questType==5){
-
+ 
 
     questions.pop();
    questions.push( <Card>
             <CardHeader>
-                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  />
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
             </CardHeader>
 
             <Divider />
-
+              
              <CardText>
              <TextField
                 hintText="Your Question"
@@ -679,7 +632,7 @@ else if(this.state.questType==5){
            <Col offset={3}>
               <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
                      <DuplicateButton style={iconStyles}/>
-              </IconButton>
+              </IconButton>  
               <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
                      <CloseButton style={iconStyles}/>
               </IconButton>
@@ -687,18 +640,18 @@ else if(this.state.questType==5){
                      <Add style={iconStyles}/>
               </IconButton>
           </Col>
-  </Card>);
+  </Card>);  
 }
 else if(this.state.questType==6){
 
     questions.pop();
    questions.push( <Card>
             <CardHeader>
-                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  />
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
             </CardHeader>
 
             <Divider />
-
+              
              <CardText>
              <TextField
                 hintText="Your Question"
@@ -715,7 +668,7 @@ else if(this.state.questType==6){
            <Col offset={3}>
               <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
                      <DuplicateButton style={iconStyles}/>
-              </IconButton>
+              </IconButton>  
               <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
                      <CloseButton style={iconStyles}/>
               </IconButton>
@@ -723,18 +676,18 @@ else if(this.state.questType==6){
                      <Add style={iconStyles}/>
               </IconButton>
           </Col>
-  </Card>);
+  </Card>);  
 }
 else if(this.state.questType==7){
 
  questions.pop();
    questions.push( <Card>
             <CardHeader>
-                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  />
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
             </CardHeader>
 
             <Divider />
-
+              
              <CardText>
               <TextField
                   hintText="Your Question"
@@ -751,7 +704,7 @@ else if(this.state.questType==7){
            <Col offset={3}>
               <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
                      <DuplicateButton style={iconStyles}/>
-              </IconButton>
+              </IconButton>  
               <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
                      <CloseButton style={iconStyles}/>
               </IconButton>
@@ -759,18 +712,18 @@ else if(this.state.questType==7){
                      <Add style={iconStyles}/>
               </IconButton>
           </Col>
-  </Card>);
+  </Card>);  
 }
 else if(this.state.questType==8){
 
 questions.pop();
    questions.push( <Card>
             <CardHeader>
-                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  />
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
             </CardHeader>
 
             <Divider />
-
+              
              <CardText>
               <TextField
                 hintText="Your Question"
@@ -787,7 +740,7 @@ questions.pop();
            <Col offset={3}>
               <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
                      <DuplicateButton style={iconStyles}/>
-              </IconButton>
+              </IconButton>  
               <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
                      <CloseButton style={iconStyles}/>
               </IconButton>
@@ -795,18 +748,18 @@ questions.pop();
                      <Add style={iconStyles}/>
               </IconButton>
           </Col>
-  </Card>);
+  </Card>);  
 }
 else if(this.state.questType==10){
 
 questions.pop();
    questions.push( <Card>
             <CardHeader>
-                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  />
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
             </CardHeader>
 
             <Divider />
-
+              
              <CardText>
               <TextField
                 hintText="Your Question"
@@ -823,7 +776,7 @@ questions.pop();
            <Col offset={3}>
               <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
                      <DuplicateButton style={iconStyles}/>
-              </IconButton>
+              </IconButton>  
               <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
                      <CloseButton style={iconStyles}/>
               </IconButton>
@@ -831,7 +784,7 @@ questions.pop();
                      <Add style={iconStyles}/>
               </IconButton>
           </Col>
-  </Card>);
+  </Card>);  
 }
 
 else if(this.state.questType==11){
@@ -839,11 +792,11 @@ else if(this.state.questType==11){
 questions.pop();
    questions.push( <Card>
             <CardHeader>
-                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  />
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
             </CardHeader>
 
             <Divider />
-
+              
              <CardText>
               <TextField
                 hintText="Your Question"
@@ -860,7 +813,7 @@ questions.pop();
            <Col offset={3}>
               <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
                      <DuplicateButton style={iconStyles}/>
-              </IconButton>
+              </IconButton>  
               <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
                      <CloseButton style={iconStyles}/>
               </IconButton>
@@ -868,18 +821,18 @@ questions.pop();
                      <Add style={iconStyles}/>
               </IconButton>
           </Col>
-  </Card>);
+  </Card>);  
 }
 else if(this.state.questType==12){
 
 questions.pop();
    questions.push( <Card>
             <CardHeader>
-                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  />
+                <SelectType getQuestionType={this.onChangeQuestType.bind(this)}  /> 
             </CardHeader>
 
             <Divider />
-
+              
              <CardText>
                 <TextField
                   hintText="Your Question"
@@ -896,7 +849,7 @@ questions.pop();
            <Col offset={3}>
               <IconButton tooltip="Duplicate" touch={true} tooltipPosition="bottom-right" style={{marginRight:'4%'}}>
                      <DuplicateButton style={iconStyles}/>
-              </IconButton>
+              </IconButton>  
               <IconButton  tooltip="Delete" touch={true} tooltipPosition="bottom-right"style={{marginRight:'4%'}}>
                      <CloseButton style={iconStyles}/>
               </IconButton>
@@ -904,7 +857,7 @@ questions.pop();
                      <Add style={iconStyles}/>
               </IconButton>
           </Col>
-  </Card>);
+  </Card>);  
 }
 
       var finalTemplete=[];
@@ -917,16 +870,16 @@ questions.pop();
                <CardText>
                   <h3 style={{marginTop:'3%',marginLeft:'3%',marginBottom:'3%',color:'#000000',textAlign:'left'}}>{i+1}:{fullQuestions.questionQ}</h3>
                   {fullQuestions.questiontype}
-
+                  
                </CardText>
-
+           
          </Card>)
             }));
 
       }
 
-
-
+      
+      
 
   return(
     <Grid>
@@ -935,7 +888,7 @@ questions.pop();
      <Paper  style={style}>
 
 
-       <Card style={welcomeStyle}
+       <Card style={welcomeStyle} 
               onClick={this.onMouseOverWelcome}
               onMouseOut={this.onMouseOut}
               zDepth={this.state.welShadow}>
@@ -946,8 +899,8 @@ questions.pop();
 
             <DisplayArea/>
             {questions}
-
-
+         
+       
        <Card style={thanksStyle}
               onClick={this.onMouseOverthanks}
               zDepth={this.state.thanksShadow}

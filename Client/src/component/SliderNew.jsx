@@ -7,6 +7,7 @@ import {blueGrey500} from 'material-ui/styles/colors';
 import Divider from 'material-ui/Divider';
 import { Grid,Col,Row} from 'react-flexbox-grid';
 import Subheader from 'material-ui/Subheader';
+import request from 'superagent';
 
 import Slider from 'react-rangeslider';
 
@@ -30,8 +31,35 @@ class SliderNew extends Component {
  }
 
  componentWillMount(){
+   if (this.props.getSliderOptions) {
+      this.props.getSliderOptions(this.oldOption());
+      console.log(this.props.index)
+    }
     this.props.type("Slider");
  }
+
+ oldOption() {
+    request.get('http://localhost:9080/api/getTempQuestions')
+
+    .end((err,res) => {
+      // if(res.body[i].questions[i].questionType=="MultiChoice"){
+       
+      //res.body.map((obj,i)=>{
+        if(res.body[this.props.index].questions[this.props.index].questionType=="Slider")
+        {
+        this.setState({
+         scale:res.body[this.props.index].questions[this.props.index].scale,
+         maximum:res.body[this.props.index].questions[this.props.index].maxValue
+              });
+        }
+      //});
+      
+      if(err){console.log(err)}
+        
+    });
+   
+     console.log("Safe")
+  }
  
 questionChange(e){
   this.setState({
@@ -94,6 +122,7 @@ handleScale(e) {
             floatingLabelText="MaxValue"
             hintText="Max Side Value"
             hintStyle={{fontWeight:'bold'}}
+            value={this.state.maximum}
             required
             min='10'
             underlineStyle={{borderColor:'#37861E'}}
@@ -103,6 +132,7 @@ handleScale(e) {
              floatingLabelText="Scale"
             hintText="Scale"
             hintStyle={{fontWeight:'bold'}}
+            value={this.state.scale}
             required
             underlineStyle={{borderColor:'#37861E'}}
             onChange={this.handleScale.bind(this)}
