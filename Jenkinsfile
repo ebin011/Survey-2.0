@@ -24,16 +24,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-pipeline {
+pipeline{
 
 
-    currentBuild.result = "SUCCESS"
+
 
     try {
 
        stage('Checkout'){
 
-          checkout([$class: 'GitSCM', branches: [[name: 'dev']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/ebin011/Survey-2.0.git']]])
+          checkout scm
        }
 
        stage('Test'){
@@ -47,14 +47,10 @@ pipeline {
 
        }
 
-
-
-
-
     }
     catch (err) {
 
-        currentBuild.result = "FAILURE"
+        
 
             echo "Failed the exicution"
         throw err
