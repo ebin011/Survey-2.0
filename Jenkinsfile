@@ -25,11 +25,8 @@ THE SOFTWARE.
 */
 
 pipeline{
-
-
-
-
-    try {
+    agent any
+    stages {
 
        stage('Checkout'){
 
@@ -38,22 +35,11 @@ pipeline{
 
        stage('Test'){
 
-         env.NODE_ENV = "test"
-
-         print "Environment will be : ${env.NODE_ENV}"
-
          sh 'node -v'
          sh 'npm install'
 
        }
 
-    }
-    catch (err) {
-
-        
-
-            echo "Failed the exicution"
-        throw err
     }
 
 }
