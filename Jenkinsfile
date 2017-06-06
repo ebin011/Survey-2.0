@@ -24,7 +24,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-nodejs(nodeJSInstallationName: 'nodeJs') {
+pipeline {
 
 
     currentBuild.result = "SUCCESS"
@@ -33,7 +33,7 @@ nodejs(nodeJSInstallationName: 'nodeJs') {
 
        stage('Checkout'){
 
-          checkout scm
+          checkout([$class: 'GitSCM', branches: [[name: 'dev']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/ebin011/Survey-2.0.git']]])
        }
 
        stage('Test'){
