@@ -23,15 +23,22 @@
 pipeline {
     agent any
     stages {
-        stage('Example') {
+        stage('Check') {
             steps {
-                echo 'Hello World'
+                echo 'Version'
+                sh 'node -v'
+            }
+        }
+        stage('Dependancy') {
+            steps {
+                echo 'Dependancy install'
+                sh 'npm install'
             }
         }
     }
     post {
         always {
-            echo 'I will always say Hello again!'
+            echo 'Half exicution completed'
         }
     }
 }
