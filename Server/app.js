@@ -60,6 +60,9 @@ app.use('/',addResult);
 
 // 	if(err)
 // 	{
+app.get('/', function(req, res){
+  res.send('Hello World');
+});
 
 // 		console.log(err)
 // 	}
@@ -72,4 +75,5 @@ const server = http.createServer(app);
 server.listen(port, () => {
 
     console.log('Express server started');
+
 });
