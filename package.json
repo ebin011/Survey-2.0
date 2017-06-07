@@ -1,0 +1,25 @@
+{
+  "name": "survey-2.0",
+  "version": "1.0.0",
+  "description": "to build a survey application",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ebin011/Survey-2.0.git"
+  },
+  "author": "Ebin Antony",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ebin011/Survey-2.0/issues"
+  },
+  "homepage": "https://github.com/ebin011/Survey-2.0#readme",
+  "dependencies": {
+    "request": "^2.81.0"
+  }
+}
