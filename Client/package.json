@@ -107,8 +107,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom",
-    "testMocha": "mocha"
+    "test": "mocha",
+    "testMocha": "find ./test -name '*_test.js' | xargs mocha -R spec"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
   "main": "index.js",
