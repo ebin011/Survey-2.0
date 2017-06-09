@@ -34,6 +34,7 @@
     "jest": "18.1.0",
     "json-loader": "0.5.4",
     "npm": "^4.2.0",
+    "nyc": "^11.0.2",
     "object-assign": "4.1.1",
     "postcss-loader": "1.2.2",
     "promise": "7.1.1",
@@ -108,7 +109,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "mocha",
-    "testMocha": "find ./test -name '*_test.js' | xargs mocha -R spec"
+    "coverage": "istanbul cover _mocha"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
   "main": "index.js",

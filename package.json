@@ -7,7 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "coverage" : "istanbul cover _mocha",
+    "coverage-open" : "xdg-open coverage/lcov-report/*.html"
   },
   "repository": {
     "type": "git",
@@ -21,5 +23,8 @@
   "homepage": "https://github.com/ebin011/Survey-2.0#readme",
   "dependencies": {
     "request": "^2.81.0"
+  },
+  "devDependencies": {
+    "nyc": "^11.0.2"
   }
 }

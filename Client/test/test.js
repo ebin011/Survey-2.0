@@ -26,6 +26,7 @@ describe("Hello World Server", function() {
         //expect(body).toBe("Hello World");
         assert.equal("Hello World", body);
         helloWorld.closeServer();
+        console.log("Completed");
         done();
       });
     });

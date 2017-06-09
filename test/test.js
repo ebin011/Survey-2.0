@@ -2,6 +2,7 @@ var assert = require('assert');
 var request = require("request");
 helloWorld = require("../Server/serverCheck.js");
 var base_url = "http://localhost:8050/";
+var app = require('../Server/app.js')
 
 describe('Array', function() {
   describe('#indexOf()', function() {
@@ -10,6 +11,15 @@ describe('Array', function() {
     });
   });
 });
+
+describe('app', function(){
+  it('should 404 without routes', function(){
+      request.use(BodyParser(),function(error,response,body){
+      assert.ok(true,"Executed");
+    });
+  });
+});
+
 
 describe("Hello World Server", function() {
   describe("GET /", function() {
