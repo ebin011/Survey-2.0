@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/ebin011/Survey-2.0#readme",
   "dependencies": {
+    "asn1": "^0.2.3",
     "request": "^2.81.0",
     "selenium-webdriver": "^3.4.0"
   },
