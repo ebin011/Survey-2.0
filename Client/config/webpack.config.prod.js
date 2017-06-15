@@ -87,7 +87,7 @@ module.exports = {
       'react-native': 'react-native-web'
     }
   },
-  
+
   module: {
     // First, run the linter.
     // It's important to do this before Babel processes the JS.
@@ -130,7 +130,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
         loader: 'babel',
-        
+
       },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
@@ -143,23 +143,23 @@ module.exports = {
       // a single CSS file in production instead of JS code injecting <style>
       // tags. If you use code splitting, however, any async bundles will still
       // use the "style" loader inside the async code so CSS from them won't be
-      // in the main CSS file.
+      // // in the main CSS file.
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style', 'css?importLoaders=1!postcss')
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
       },
-       {
-        test: /\.css$/,
-        loader: 'style!css?importLoaders=1!postcss',
-        exclude: /flexboxgrid/,
-      },
-      {
-        test: /\.css$/,
-        loader: 'style!css?modules',
-        include: /flexboxgrid/,
-      },
-      
+      //  {
+      //   test: /\.css$/,
+      //   loader: 'style!css?importLoaders=1!postcss',
+      //   exclude: /flexboxgrid/,
+      // },
+      // {
+      //   test: /\.css$/,
+      //   loader: 'style!css?modules',
+      //   include: /flexboxgrid/,
+      // },
+      //
       // JSON is not enabled by default in Webpack but both Node and Browserify
       // allow it implicitly so we also enable it.
       {
@@ -176,7 +176,7 @@ module.exports = {
       }
     ]
   },
-  
+
   // We use PostCSS for autoprefixing only.
   postcss: function() {
     return [

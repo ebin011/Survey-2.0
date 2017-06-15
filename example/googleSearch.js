@@ -26,9 +26,9 @@ var webdriver = require('selenium-webdriver'),
 
   driver.getCapabilities().then(console.log);
 
-driver.get('http://www.google.com');
-driver.findElement(By.name('q')).sendKeys('webdriver');
-driver.findElement(By.name('btnG')).click();
+driver.get('http://localhost:3000');
+//driver.findElement(By.name('q')).sendKeys('webdriver');
+//driver.findElement(By.name('btnG')).click();
 //driver.wait(until.titleIs('webdriver - Google Search'), 1000);
 driver.quit();
 
@@ -53,8 +53,8 @@ var driverChrome = new webdriver.Builder()
   .build();
 
 driverChrome.getCapabilities().then(console.log);
-driverChrome.get('http://www.google.com');
-driverChrome.findElement(By.name('q')).sendKeys('webdriver');
-driverChrome.findElement(By.name('btnG')).click();
+driverChrome.get('http://localhost:3000');
+//driverChrome.findElement(By.name('q')).sendKeys('webdriver');
+//driverChrome.findElement(By.name('btnG')).click();
 //driver.wait(until.titleIs('webdriver - Google Search'), 1000);
 driverChrome.quit();
